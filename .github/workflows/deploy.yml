@@ -36,7 +36,7 @@ jobs:
     # Step 5: Prepare plugin for deployment
     - name: Prepare Plugin for Deployment
       run: |
-        mkdir -p build
+        mkdir -p build/wp-advanced-role-manager
         rsync -av --exclude 'build' --exclude '.git' --exclude '.github' --exclude 'node_modules' ./ build/wp-advanced-role-manager
         cd build
         zip -r ../wp-advanced-role-manager.zip wp-advanced-role-manager
@@ -66,7 +66,7 @@ jobs:
         
         # Construct the updated release body
         EXISTING_BODY=$(echo "$RELEASE_DATA" | jq -r '.body')
-        UPDATED_BODY="You can download the latest version from the Actions run artifacts [here]($ARTIFACT_URL).\n\n${EXISTING_BODY}"
+        UPDATED_BODY="You can download the latest version from the Actions run artifacts [here]($ARTIFACT_URL).{EXISTING_BODY}"
         
         # Properly escape the JSON body using jq
         JSON_BODY=$(jq -n --arg body "$UPDATED_BODY" '{body: $body}')
