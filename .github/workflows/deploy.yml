@@ -12,7 +12,7 @@ jobs:
     steps:
     # Step 1: Checkout the repository
     - name: Checkout Code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4  # Updated to v4
 
     # Step 2: Set up PHP environment
     - name: Set up PHP
@@ -38,7 +38,7 @@ jobs:
 
     # Step 5: Upload the ZIP file as an artifact
     - name: Upload Plugin ZIP
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4  # Updated to v4
       with:
         name: wp-advanced-role-manager
         path: wp-advanced-role-manager.zip
