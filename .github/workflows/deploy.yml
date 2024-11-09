@@ -1,0 +1,44 @@
+name: Deploy WordPress Plugin
+
+on:
+  push:
+    tags:
+      - 'v*'  # Triggers the workflow on version tags (e.g., v1.0.0)
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout the repository
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    # Step 2: Set up PHP environment
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'  # Specify your PHP version
+        extensions: mbstring, json, curl
+        coverage: none
+
+    # Step 3: Validate PHP syntax
+    - name: Validate PHP Syntax
+      run: |
+        find . -name "*.php" -print0 | xargs -0 -n1 php -l
+
+    # Step 4: Prepare plugin for deployment
+    - name: Prepare Plugin for Deployment
+      run: |
+        mkdir -p build
+        cp -R . build/wp-advanced-role-manager
+        cd build
+        zip -r ../wp-advanced-role-manager.zip wp-advanced-role-manager -x "*.git*" "*.github*" "node_modules/*"
+        cd ..
+
+    # Step 5: Upload the ZIP file as an artifact
+    - name: Upload Plugin ZIP
+      uses: actions/upload-artifact@v3
+      with:
+        name: wp-advanced-role-manager
+        path: wp-advanced-role-manager.zip
