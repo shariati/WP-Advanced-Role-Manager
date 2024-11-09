@@ -8,26 +8,32 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Grants permission to update releases
 
     steps:
     # Step 1: Checkout the repository
     - name: Checkout Code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     # Step 2: Set up PHP environment
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.4'  # Specify your PHP version
+        php-version: '7.4'
         extensions: mbstring, json, curl
         coverage: none
 
-    # Step 3: Validate PHP syntax
+    # Step 3: Install jq
+    - name: Install jq
+      run: sudo apt-get update && sudo apt-get install -y jq
+
+    # Step 4: Validate PHP syntax
     - name: Validate PHP Syntax
       run: |
         find . -name "*.php" -print0 | xargs -0 -n1 php -l
 
-    # Step 4: Prepare plugin for deployment
+    # Step 5: Prepare plugin for deployment
     - name: Prepare Plugin for Deployment
       run: |
         mkdir -p build
@@ -36,9 +42,38 @@ jobs:
         zip -r ../wp-advanced-role-manager.zip wp-advanced-role-manager
         cd ..
 
-    # Step 5: Upload the ZIP file as an artifact
+    # Step 6: Upload the ZIP file as an artifact
     - name: Upload Plugin ZIP
-      uses: actions/upload-artifact@v3
+      id: upload-artifact
+      uses: actions/upload-artifact@v4
       with:
         name: wp-advanced-role-manager
         path: wp-advanced-role-manager.zip
+
+    # Step 7: Update Release Note with Artifact URL
+    - name: Update Release Note
+      if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+      run: |
+        # Construct the general artifact URL to the Actions run
+        ARTIFACT_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts"
+        RELEASE_TAG="${GITHUB_REF##*/}"
+        
+        # Retrieve the release information
+        RELEASE_DATA=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                            -H "Accept: application/vnd.github.v3+json" \
+                            "https://api.github.com/repos/${{ github.repository }}/releases/tags/${RELEASE_TAG}")
+        RELEASE_ID=$(echo "$RELEASE_DATA" | jq -r '.id')
+        
+        # Construct the updated release body
+        EXISTING_BODY=$(echo "$RELEASE_DATA" | jq -r '.body')
+        UPDATED_BODY="You can download the latest version from the Actions run artifacts [here]($ARTIFACT_URL).\n\n${EXISTING_BODY}"
+        
+        # Properly escape the JSON body using jq
+        JSON_BODY=$(jq -n --arg body "$UPDATED_BODY" '{body: $body}')
+        
+        # Update the release note with the artifact URL
+        curl -X PATCH -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d "$JSON_BODY" \
+            "https://api.github.com/repos/${{ github.repository }}/releases/${RELEASE_ID}"
+  
