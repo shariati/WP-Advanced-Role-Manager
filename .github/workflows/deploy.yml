@@ -31,9 +31,9 @@ jobs:
     - name: Prepare Plugin for Deployment
       run: |
         mkdir -p build
-        cp -R . build/wp-advanced-role-manager
+        rsync -av --exclude 'build' --exclude '.git' --exclude '.github' --exclude 'node_modules' ./ build/wp-advanced-role-manager
         cd build
-        zip -r ../wp-advanced-role-manager.zip wp-advanced-role-manager -x "*.git*" "*.github*" "node_modules/*"
+        zip -r ../wp-advanced-role-manager.zip wp-advanced-role-manager
         cd ..
 
     # Step 5: Upload the ZIP file as an artifact
