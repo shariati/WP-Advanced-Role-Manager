@@ -1,0 +1,116 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Advanced Role Manager 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-09 12:00+0000\n"
+"PO-Revision-Date: \n"
+"Language: es,de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+
+#: advanced-role-manager.php:50
+msgid "Add New Role"
+msgstr[0] "Agregar Nuevo Rol"  # Spanish
+msgstr[1] "Neue Rolle hinzufügen"  # German
+
+#: advanced-role-manager.php:51
+msgid "All Roles"
+msgstr[0] "Todos los Roles"  # Spanish
+msgstr[1] "Alle Rollen"  # German
+
+#: advanced-role-manager.php:100
+msgid "Role Name"
+msgstr[0] "Nombre del Rol"  # Spanish
+msgstr[1] "Rollenname"  # German
+
+#: advanced-role-manager.php:101
+msgid "Description"
+msgstr[0] "Descripción"  # Spanish
+msgstr[1] "Beschreibung"  # German
+
+#: advanced-role-manager.php:102
+msgid "Capabilities"
+msgstr[0] "Capacidades"  # Spanish
+msgstr[1] "Fähigkeiten"  # German
+
+#: advanced-role-manager.php:150
+msgid "Edit User Role"
+msgstr[0] "Editar Rol de Usuario"  # Spanish
+msgstr[1] "Benutzerrolle bearbeiten"  # German
+
+#: advanced-role-manager.php:200
+msgid "Delete User Role"
+msgstr[0] "Eliminar Rol de Usuario"  # Spanish
+msgstr[1] "Benutzerrolle löschen"  # German
+
+#: advanced-role-manager.php:250
+msgid "View User Role"
+msgstr[0] "Ver Rol de Usuario"  # Spanish
+msgstr[1] "Benutzerrolle anzeigen"  # German
+
+#: advanced-role-manager.php:300
+msgid "Import/Export Roles"
+msgstr[0] "Importar/Exportar Roles"  # Spanish
+msgstr[1] "Rollen importieren/exportieren"  # German
+
+#: advanced-role-manager.php:350
+msgid "Role updated successfully!"
+msgstr[0] "¡Rol actualizado con éxito!"  # Spanish
+msgstr[1] "Rolle erfolgreich aktualisiert!"  # German
+
+#: advanced-role-manager.php:351
+msgid "Role deleted successfully!"
+msgstr[0] "¡Rol eliminado con éxito!"  # Spanish
+msgstr[1] "Rolle erfolgreich gelöscht!"  # German
+
+#: advanced-role-manager.php:400
+msgid "Are you sure you want to delete this role? This action cannot be undone."
+msgstr[0] "¿Está seguro de que desea eliminar este rol? Esta acción no se puede deshacer."  # Spanish
+msgstr[1] "Sind Sie sicher, dass Sie diese Rolle löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden."  # German
+
+#: advanced-role-manager.php:401
+msgid "Update Role"
+msgstr[0] "Actualizar Rol"  # Spanish
+msgstr[1] "Rolle aktualisieren"  # German
+
+#: advanced-role-manager.php:402
+msgid "Delete Role"
+msgstr[0] "Eliminar Rol"  # Spanish
+msgstr[1] "Rolle löschen"  # German
+
+#: advanced-role-manager.php:403
+msgid "Export Roles as JSON"
+msgstr[0] "Exportar Roles como JSON"  # Spanish
+msgstr[1] "Rollen als JSON exportieren"  # German
+
+#: advanced-role-manager.php:404
+msgid "Import Roles"
+msgstr[0] "Importar Roles"  # Spanish
+msgstr[1] "Rollen importieren"  # German
+
+#: advanced-role-manager.php:405
+msgid "Invalid Role"
+msgstr[0] "Rol no válido"  # Spanish
+msgstr[1] "Ungültige Rolle"  # German
+
+#: advanced-role-manager.php:406
+msgid "You do not have sufficient permissions to access this page."
+msgstr[0] "No tiene permisos suficientes para acceder a esta página."  # Spanish
+msgstr[1] "Sie haben nicht die erforderlichen Berechtigungen, um auf diese Seite zuzugreifen."  # German
+
+#: advanced-role-manager.php:407
+msgid "View"
+msgstr[0] "Ver"  # Spanish
+msgstr[1] "Anzeigen"  # German
+
+#: advanced-role-manager.php:408
+msgid "Edit"
+msgstr[0] "Editar"  # Spanish
+msgstr[1] "Bearbeiten"  # German
+
+#: advanced-role-manager.php:409
+msgid "Delete"
+msgstr[0] "Eliminar"  # Spanish
+msgstr[1] "Löschen"  # German
